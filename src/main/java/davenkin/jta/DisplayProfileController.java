@@ -22,6 +22,7 @@ import java.util.Random;
 @Controller
 public class DisplayProfileController {
 
+    private final Random random = new Random(52434);
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Autowired
@@ -39,7 +40,6 @@ public class DisplayProfileController {
     @RequestMapping(value = "/insertDB", method = RequestMethod.GET)
     @ResponseBody
     public String insertDB() throws JMSException {
-        Random random = new Random(2043);
         jdbcTemplate.execute("insert into profile values('" + random.nextInt(1000) + "','" + random.nextInt(1000) + "')");
         return "Record inserted into database";
     }
@@ -47,7 +47,7 @@ public class DisplayProfileController {
     @RequestMapping(value = "/insertQ", method = RequestMethod.GET)
     @ResponseBody
     public String insertQ() {
-        final String randomNumber = String.valueOf(new Random(52434).nextInt(1000));
+        final String randomNumber = String.valueOf(random.nextInt(1000));
 
         jmsTemplate.send(new MessageCreator() {
             @Override

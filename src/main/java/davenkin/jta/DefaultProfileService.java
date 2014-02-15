@@ -17,16 +17,25 @@ import javax.jms.TextMessage;
  */
 public class DefaultProfileService implements ProfileService {
 
+    public static final String INSERT_SQL = "insert into profile values('%s','%s')";
     private JmsTemplate jmsTemplate;
     private JdbcTemplate jdbcTemplate;
+    private int in = 0;
 
     @Override
     @Transactional
     public void profileFromQueueToDB() throws JMSException {
-        TextMessage message = (TextMessage) jmsTemplate.receive();
+        insertProfile(((TextMessage) jmsTemplate.receive()).getText());
+//        throw new RuntimeException("xxxxx");
+    }
 
-        jdbcTemplate.execute("insert into profile values('" + message.getText() + "','" + message.getText() + "')");
-        throw new RuntimeException("xxxxx");
+    @Override
+    @Transactional
+    public void insertProfile(String message) {
+        jdbcTemplate.execute(String.format(INSERT_SQL, message, message));
+//        if (in++ < 3) {
+            throw new RuntimeException("YYYYY");
+//        }
     }
 
     @Required
