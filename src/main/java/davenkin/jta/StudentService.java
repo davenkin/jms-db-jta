@@ -11,7 +11,7 @@ import javax.jms.JMSException;
  */
 public interface StudentService {
 
-    public void profileFromQueueToDB() throws JMSException;
+    public void moveStudentFromQueueToDB() throws JMSException;
 
-    void insertProfile(String message);
+    void insertStudent(String name, String id);
 }

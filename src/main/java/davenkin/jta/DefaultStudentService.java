@@ -6,6 +6,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.TextMessage;
 
 /**
@@ -17,22 +18,23 @@ import javax.jms.TextMessage;
  */
 public class DefaultStudentService implements StudentService {
 
-    public static final String INSERT_SQL = "insert into profile values('%s','%s')";
+    public static final String INSERT_SQL = "insert into student values('%s','%s')";
     private JmsTemplate jmsTemplate;
     private JdbcTemplate jdbcTemplate;
     private int in = 0;
 
     @Override
     @Transactional
-    public void profileFromQueueToDB() throws JMSException {
-        insertProfile(((TextMessage) jmsTemplate.receive()).getText());
+    public void moveStudentFromQueueToDB() throws JMSException {
+        String nameAndId = ((TextMessage) jmsTemplate.receive()).getText();
+        insertStudent(nameAndId, nameAndId);
 //        throw new RuntimeException("xxxxx");
     }
 
     @Override
     @Transactional
-    public void insertProfile(String message) {
-        jdbcTemplate.execute(String.format(INSERT_SQL, message, message));
+    public void insertStudent(String name, String id) {
+        jdbcTemplate.execute(String.format(INSERT_SQL, name, id));
 //        if (in++ < 3) {
             throw new RuntimeException("YYYYY");
 //        }

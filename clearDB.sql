@@ -1,2 +1,2 @@
 use spring;
-delete from profile;
+delete from student;

@@ -33,14 +33,14 @@ public class StudentController {
     @RequestMapping(value = "/displayDB", method = RequestMethod.GET)
     @ResponseBody
     public String displayDB() {
-        List<Student> students = jdbcTemplate.query("select * from profile", new BeanPropertyRowMapper<Student>(Student.class));
+        List<Student> students = jdbcTemplate.query("select * from student", new BeanPropertyRowMapper<Student>(Student.class));
         return "Records in DB: " + Joiner.on(" | ").join(students);
     }
 
     @RequestMapping(value = "/insertDB", method = RequestMethod.GET)
     @ResponseBody
     public String insertDB() throws JMSException {
-        jdbcTemplate.execute("insert into profile values('" + random.nextInt(1000) + "','" + random.nextInt(1000) + "')");
+        jdbcTemplate.execute("insert into student values('" + random.nextInt(1000) + "','" + random.nextInt(1000) + "')");
         return "Record inserted into database";
     }
 
@@ -69,7 +69,7 @@ public class StudentController {
     @RequestMapping(value = "/fromQueueToDB", method = RequestMethod.GET)
     @ResponseBody
     public String fromQueueToDB() throws JMSException {
-        studentService.profileFromQueueToDB();
+        studentService.moveStudentFromQueueToDB();
         return "Queue transferred from Queue to DB";
     }
 
