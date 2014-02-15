@@ -36,7 +36,7 @@ public class DefaultStudentService implements StudentService {
     public void insertStudent(String name, String id) {
         jdbcTemplate.execute(String.format(INSERT_SQL, name, id));
 //        if (in++ < 3) {
-            throw new RuntimeException("YYYYY");
+//            throw new RuntimeException("YYYYY");
 //        }
     }
 

@@ -1,6 +1,5 @@
 apply plugin: 'war'
 apply plugin: 'idea'
-//apply plugin: 'java'
 
 sourceCompatibility = 1.6
 
@@ -28,7 +27,17 @@ dependencies {
             'org.springframework:spring-context-support:3.2.5.RELEASE',
             'org.springframework:spring-jms:3.2.5.RELEASE',
             'org.springframework:spring-aop:3.2.5.RELEASE'
+
     )
+
+    providedCompile(
+            'org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1'
+    )
+
+    runtime(
+            'mysql:mysql-connector-java:5.1.26'
+    )
+
 
 }
 
