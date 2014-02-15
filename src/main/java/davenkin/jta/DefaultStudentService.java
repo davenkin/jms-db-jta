@@ -15,7 +15,7 @@ import javax.jms.TextMessage;
  * Time: 8:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DefaultProfileService implements ProfileService {
+public class DefaultStudentService implements StudentService {
 
     public static final String INSERT_SQL = "insert into profile values('%s','%s')";
     private JmsTemplate jmsTemplate;

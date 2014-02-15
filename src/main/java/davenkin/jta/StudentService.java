@@ -9,7 +9,7 @@ import javax.jms.JMSException;
  * Time: 8:12 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface ProfileService {
+public interface StudentService {
 
     public void profileFromQueueToDB() throws JMSException;
 

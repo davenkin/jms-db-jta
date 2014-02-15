@@ -35,7 +35,7 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean name="profileService" class="davenkin.jta.DefaultProfileService">
+    <bean name="studentService" class="davenkin.jta.DefaultStudentService">
         <property name="jmsTemplate" ref="jmsTemplate"/>
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
@@ -99,7 +99,7 @@
             <!--<bean class="org.springframework.jms.listener.adapter.MessageListenerAdapter">-->
                 <!--<constructor-arg>-->
                     <!--<bean class="davenkin.jta.DefaultMessageConsumer">-->
-                        <!--<property name="profileService" ref="profileService"/>-->
+                        <!--<property name="studentService" ref="studentService"/>-->
                     <!--</bean>-->
                 <!--</constructor-arg>-->
             <!--</bean>-->

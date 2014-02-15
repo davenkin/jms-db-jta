@@ -7,7 +7,7 @@ package davenkin.jta;
  * Time: 5:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Profile {
+public class Student {
     private String id;
     private String name;
 

@@ -20,7 +20,7 @@ import java.util.Random;
 
 
 @Controller
-public class DisplayProfileController {
+public class StudentController {
 
     private final Random random = new Random(52434);
     @Autowired
@@ -28,13 +28,13 @@ public class DisplayProfileController {
     @Autowired
     JmsTemplate jmsTemplate;
     @Autowired
-    ProfileService profileService;
+    StudentService studentService;
 
     @RequestMapping(value = "/displayDB", method = RequestMethod.GET)
     @ResponseBody
     public String displayDB() {
-        List<Profile> profiles = jdbcTemplate.query("select * from profile", new BeanPropertyRowMapper<Profile>(Profile.class));
-        return "Records in DB: " + Joiner.on(" | ").join(profiles);
+        List<Student> students = jdbcTemplate.query("select * from profile", new BeanPropertyRowMapper<Student>(Student.class));
+        return "Records in DB: " + Joiner.on(" | ").join(students);
     }
 
     @RequestMapping(value = "/insertDB", method = RequestMethod.GET)
@@ -69,7 +69,7 @@ public class DisplayProfileController {
     @RequestMapping(value = "/fromQueueToDB", method = RequestMethod.GET)
     @ResponseBody
     public String fromQueueToDB() throws JMSException {
-        profileService.profileFromQueueToDB();
+        studentService.profileFromQueueToDB();
         return "Queue transferred from Queue to DB";
     }
 

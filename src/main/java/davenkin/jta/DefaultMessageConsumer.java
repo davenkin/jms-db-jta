@@ -13,16 +13,16 @@ import javax.jms.JMSException;
  * To change this template use File | Settings | File Templates.
  */
 public class DefaultMessageConsumer implements MessageConsumer {
-    private ProfileService profileService;
+    private StudentService studentService;
 
     @Override
     @Transactional
     public void handleMessage(Object message) throws JMSException {
-        profileService.insertProfile((String) message);
+        studentService.insertProfile((String) message);
     }
 
     @Required
-    public void setProfileService(ProfileService profileService) {
-        this.profileService = profileService;
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
     }
 }
